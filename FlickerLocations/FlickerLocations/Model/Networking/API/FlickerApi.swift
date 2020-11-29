@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct FlickerAPI{
-     static let baseURLString = "shttps://api.flickr.com/services/rest"
-     static let apiKey = "a6d819499131071f158fd740860a5a88"
+    static let baseURLString = "shttps://api.flickr.com/services/rest"
+    static let apiKey = "a6d819499131071f158fd740860a5a88"
 }
 
 
@@ -34,5 +34,15 @@ enum EndPoint{
         }
     }
     
+    var url: URL {
+        return URL(string: urlString)!
+    }
+    
+    
+}
+
+func getFlickerURL(longitude: Double, latitude: Double, radius: Double = 20, totalPagesAmount: Int = 17, photosPerPage: Int = 17)->URL{
+    let searchURL = EndPoint.searchURLString(longitude, latitude, radius, totalPagesAmount, photosPerPage).url
+    return searchURL
 }
 
