@@ -46,6 +46,9 @@ class ListViewController: UIViewController {
         photoFetcher.fetchFlickerPhotos(url: url) { (array, error) in
             print("arararararr: \(array)")
             print("error:  \(error)")
+            
+            self.collectionViewDataSource.photos = array!
+            self.collectionView.reloadSections(IndexSet(integer: 0))
         }
     }
     
