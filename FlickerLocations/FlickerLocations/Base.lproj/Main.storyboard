@@ -27,13 +27,38 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="m0y-11-PoD">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoListCell" id="m0y-11-PoD" customClass="PhotosListCollectionViewCell" customModule="FlickerLocations" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0d1-Hj-GKh">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9vN-3F-p3m">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="108"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-Hd-71Q">
+                                                    <rect key="frame" x="0.0" y="107" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XXO-Hd-71Q" firstAttribute="top" secondItem="0d1-Hj-GKh" secondAttribute="top" constant="107" id="Oyz-cz-a0o"/>
+                                                <constraint firstAttribute="trailing" secondItem="9vN-3F-p3m" secondAttribute="trailing" id="R2g-Un-yYv"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XXO-Hd-71Q" secondAttribute="trailing" constant="20" symbolic="YES" id="VbA-gV-8Sf"/>
+                                                <constraint firstItem="9vN-3F-p3m" firstAttribute="top" secondItem="0d1-Hj-GKh" secondAttribute="top" id="axu-e4-4Np"/>
+                                                <constraint firstItem="9vN-3F-p3m" firstAttribute="leading" secondItem="0d1-Hj-GKh" secondAttribute="leading" id="dRI-ok-kLi"/>
+                                                <constraint firstAttribute="bottom" secondItem="XXO-Hd-71Q" secondAttribute="bottom" id="txg-Cg-fjk"/>
+                                                <constraint firstItem="XXO-Hd-71Q" firstAttribute="leading" secondItem="0d1-Hj-GKh" secondAttribute="leading" id="x0H-F4-KOX"/>
+                                                <constraint firstAttribute="bottom" secondItem="9vN-3F-p3m" secondAttribute="bottom" constant="20" id="zwT-hw-6AZ"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="distanceLabel" destination="XXO-Hd-71Q" id="6CD-w0-bPT"/>
+                                            <outlet property="photoImageView" destination="9vN-3F-p3m" id="zcI-oz-21e"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -70,6 +95,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0iu-iD-OWl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6dX-gn-4X5">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
