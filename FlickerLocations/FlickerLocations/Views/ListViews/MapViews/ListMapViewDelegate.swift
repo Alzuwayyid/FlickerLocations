@@ -7,8 +7,12 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class ListMapViewDelegate: NSObject, MKMapViewDelegate {
-
+    
+    var locationManager = CLLocationManager()
     
 }
+
+
