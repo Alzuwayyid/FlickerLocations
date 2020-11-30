@@ -55,6 +55,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" selectedImage="list.bullet.indent" catalog="system" id="heN-aB-4aY"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Bhv-ie-29W" id="GjL-ZZ-nC0"/>
+                        <outlet property="mapView" destination="YLt-CF-UNL" id="jdx-V2-Urn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
