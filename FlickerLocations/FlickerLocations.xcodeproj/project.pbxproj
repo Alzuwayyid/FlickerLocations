@@ -17,7 +17,10 @@
 		1009C95B2573D7790022497D /* FlickerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C95A2573D7790022497D /* FlickerApi.swift */; };
 		1009C96D2573FB360022497D /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C96C2573FB360022497D /* PhotoFetcher.swift */; };
 		1009C9762573FBDE0022497D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C9752573FBDE0022497D /* Photo.swift */; };
-		1009C98625740ACA0022497D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C98525740ACA0022497D /* MainViewController.swift */; };
+		1009C98625740ACA0022497D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C98525740ACA0022497D /* ListViewController.swift */; };
+		1009C99125750E770022497D /* ListCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C99025750E770022497D /* ListCollectionViewDataSource.swift */; };
+		1009C99925750F250022497D /* ListCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C99825750F250022497D /* ListCollectionViewDelegate.swift */; };
+		1009C9A1257510BD0022497D /* ListMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +57,10 @@
 		1009C95A2573D7790022497D /* FlickerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerApi.swift; sourceTree = "<group>"; };
 		1009C96C2573FB360022497D /* PhotoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFetcher.swift; sourceTree = "<group>"; };
 		1009C9752573FBDE0022497D /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		1009C98525740ACA0022497D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1009C98525740ACA0022497D /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		1009C99025750E770022497D /* ListCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		1009C99825750F250022497D /* ListCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMapViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +163,7 @@
 		1009C9542573D23E0022497D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1009C98525740ACA0022497D /* MainViewController.swift */,
+				1009C98525740ACA0022497D /* ListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -165,6 +171,7 @@
 		1009C9582573D29A0022497D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1009C98D25750CE10022497D /* ListViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +198,32 @@
 				1009C9752573FBDE0022497D /* Photo.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		1009C98D25750CE10022497D /* ListViews */ = {
+			isa = PBXGroup;
+			children = (
+				1009C98F25750D1F0022497D /* CollectionViews */,
+				1009C98E25750D140022497D /* MapViews */,
+			);
+			path = ListViews;
+			sourceTree = "<group>";
+		};
+		1009C98E25750D140022497D /* MapViews */ = {
+			isa = PBXGroup;
+			children = (
+				1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */,
+			);
+			path = MapViews;
+			sourceTree = "<group>";
+		};
+		1009C98F25750D1F0022497D /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				1009C99025750E770022497D /* ListCollectionViewDataSource.swift */,
+				1009C99825750F250022497D /* ListCollectionViewDelegate.swift */,
+			);
+			path = CollectionViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,10 +358,13 @@
 			files = (
 				1009C96D2573FB360022497D /* PhotoFetcher.swift in Sources */,
 				1009C9202573CBEB0022497D /* AppDelegate.swift in Sources */,
+				1009C99925750F250022497D /* ListCollectionViewDelegate.swift in Sources */,
+				1009C9A1257510BD0022497D /* ListMapViewDelegate.swift in Sources */,
 				1009C95B2573D7790022497D /* FlickerApi.swift in Sources */,
-				1009C98625740ACA0022497D /* MainViewController.swift in Sources */,
+				1009C98625740ACA0022497D /* ListViewController.swift in Sources */,
 				1009C9222573CBEB0022497D /* SceneDelegate.swift in Sources */,
 				1009C9762573FBDE0022497D /* Photo.swift in Sources */,
+				1009C99125750E770022497D /* ListCollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
