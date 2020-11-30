@@ -1,0 +1,6 @@
+framework module Pods_FlickerLocations {
+  umbrella header "Pods-FlickerLocations-umbrella.h"
+
+  export *
+  module * { export * }
+}
