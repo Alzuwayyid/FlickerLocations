@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class ListViewController: UIViewController {
 
     var photoFetcher = fetcher()
     override func viewDidLoad() {
@@ -23,7 +23,8 @@ class MainViewController: UIViewController {
             
         }
         
-        let url = getFlickerURL(longitude: 46.675297, latitude: 24.713552, radius: 20, totalPagesAmount: 20, photosPerPage: 20)
+        
+        let url = getFlickerURL(longitude: 24.755562, latitude: 46.589584, radius: 20, totalPagesAmount: 20, photosPerPage: 20)
         print("url:  \(url)")
         
         photoFetcher.fetchFlickerPhotos(url: url) { (array, error) in
