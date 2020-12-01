@@ -71,7 +71,31 @@ struct Photos: Codable {
 }
 
 
+// MARK: - Location
+struct LocationResponse: Codable {
+    let photo: Photo
+    let stat: String
+}
 
+struct Photo: Codable {
+    let id: String
+    let location: Location
+}
+
+struct Location: Codable {
+    let latitude, longitude: String
+    let accuracy, context: String
+    let locality, neighbourhood, region, country: Country
+
+}
+
+struct Country: Codable {
+    let content: String
+
+    enum CodingKeys: String, CodingKey {
+        case content = "_content"
+    }
+}
 
 
 
@@ -88,3 +112,4 @@ struct Photos: Codable {
 //    }
 //}
 //
+

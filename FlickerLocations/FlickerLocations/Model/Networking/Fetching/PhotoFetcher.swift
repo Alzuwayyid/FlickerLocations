@@ -12,7 +12,7 @@ class fetcher{
     
     
     func fetchFlickerPhotos(url: URL, completion: @escaping ([PhotoStruct]?, Error?) -> ()){
-//       let dispatchGroup = DispatchGroup()
+        //       let dispatchGroup = DispatchGroup()
         URLSession.shared.dataTask(with: url){
             (data, response, error) in
             
@@ -29,10 +29,31 @@ class fetcher{
                 }
             }
             catch{
-                print("Fetching error:  \(error.localizedDescription)")
+                print("Fetching Photo error:  \(error.localizedDescription)")
             }
         }.resume()
         
+    }
+    
+    
+    func fetchPhotosLocation(url: URL, completion: @escaping (Location?, Error?) -> ()){
+        
+        URLSession.shared.dataTask(with: url){
+            (data, response, error) in
+            let decoder = JSONDecoder()
+            
+            do{
+                let locationFeed = try decoder.decode(LocationResponse.self, from: data!)
+                
+                let passedVar = locationFeed.photo.location
+                DispatchQueue.main.async {
+                    completion(passedVar , error)
+                }
+            }
+            catch{
+                print("Fetching Location error:  \(error.localizedDescription)")
+            }
+        }.resume()
     }
     
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		1009C99125750E770022497D /* ListCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C99025750E770022497D /* ListCollectionViewDataSource.swift */; };
 		1009C99925750F250022497D /* ListCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C99825750F250022497D /* ListCollectionViewDelegate.swift */; };
 		1009C9A1257510BD0022497D /* ListMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */; };
+		1079D8B82576591100794334 /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079D8B72576591100794334 /* PhotoStore.swift */; };
 		108D858A2575320E00E04516 /* PhotosListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D85892575320E00E04516 /* PhotosListCollectionViewCell.swift */; };
 		4398DAA0122477B58214AB6B /* Pods_FlickerLocations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C87FCD78C6F8F0EA7540E7B2 /* Pods_FlickerLocations.framework */; };
 		514728507B80BE95DC6700AE /* Pods_FlickerLocationsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E61DDC5B1977DDCC7F9EDE8 /* Pods_FlickerLocationsTests.framework */; };
@@ -65,6 +66,7 @@
 		1009C99025750E770022497D /* ListCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		1009C99825750F250022497D /* ListCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMapViewDelegate.swift; sourceTree = "<group>"; };
+		1079D8B72576591100794334 /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
 		108D85892575320E00E04516 /* PhotosListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListCollectionViewCell.swift; sourceTree = "<group>"; };
 		14A9D9EE010436FFED74CA9B /* Pods-FlickerLocationsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerLocationsTests.release.xcconfig"; path = "Target Support Files/Pods-FlickerLocationsTests/Pods-FlickerLocationsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B2DFEECFA882B1CDB2F3D20 /* Pods_FlickerLocations_FlickerLocationsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickerLocations_FlickerLocationsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				1009C9752573FBDE0022497D /* Photo.swift */,
+				1079D8B72576591100794334 /* PhotoStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				1009C98625740ACA0022497D /* ListViewController.swift in Sources */,
 				1009C9222573CBEB0022497D /* SceneDelegate.swift in Sources */,
 				108D858A2575320E00E04516 /* PhotosListCollectionViewCell.swift in Sources */,
+				1079D8B82576591100794334 /* PhotoStore.swift in Sources */,
 				1009C9762573FBDE0022497D /* Photo.swift in Sources */,
 				1009C99125750E770022497D /* ListCollectionViewDataSource.swift in Sources */,
 			);

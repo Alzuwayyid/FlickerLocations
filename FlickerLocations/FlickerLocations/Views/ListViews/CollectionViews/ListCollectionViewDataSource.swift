@@ -9,18 +9,21 @@ import UIKit
 import Alamofire
 
 class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
-
-    var photos = [PhotoStruct]()
     
+    var photos = [PhotoStruct]()
+    private let imageStore = ImageStore()
+//    var photoFetcher = fetcher()
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = "PhotoListCell"
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! PhotosListCollectionViewCell
         
         let url = URL(string: photos[indexPath.row].url_m)
+        
         
         AF.request(url!,method: .get).response{
             (response) in
@@ -29,6 +32,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 
                 case .success(let photoData):
                     cell.photoImageView.image = UIImage(data: photoData!, scale: 1)
+                    
                 case .failure(let error):
                     print("Error while fetching image from URL: \(error)")
             }
@@ -40,7 +44,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     
-
-
-
+    
+    
+    
 }
