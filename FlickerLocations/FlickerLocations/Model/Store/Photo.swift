@@ -97,19 +97,10 @@ struct Country: Codable {
     }
 }
 
-
-
-
-
-//struct Location: Codable {
-//    let latitude: Double
-//    let longitude: Double
-//    let location: String
-//    let country: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case location, country, latitude, longitude
-//    }
-//}
-//
-
+extension PhotoStruct: Equatable{
+    static func == (lhs: PhotoStruct, rhs: PhotoStruct) -> Bool {
+            // Two Photos are the same if they have the same photoID
+        return lhs.farm == rhs.farm && lhs.id == rhs.id && lhs.isfamily == rhs.isfamily && lhs.isfriend == rhs.isfriend && lhs.ispublic == rhs.ispublic && lhs.owner == rhs.owner && lhs.secret == rhs.secret && lhs.server == rhs.server && lhs.title == rhs.title && lhs.url_m == rhs.url_m
+        
+    }
+}
