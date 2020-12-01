@@ -89,6 +89,7 @@ extension ListViewController: CLLocationManagerDelegate{
                 self.collectionViewDataSource.latitude = self.latitude
                 self.collectionViewDataSource.longitude = self.longitude
                 self.collectionViewDataSource.photos = array!
+                self.collectionViewDelegate.photos = array!
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }
             viewCounter += 1

@@ -11,6 +11,16 @@ class PhotosListCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var distanceLabel: UILabel!
     
+    func update(displaying image: UIImage?){
+        if let imageToDisplay = image {
+//            spinner.stopAnimating()
+            photoImageView.image = imageToDisplay
+        }
+        else{
+//            spinner.startAnimating()
+            photoImageView.image = nil
+        }
+    }
     
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
