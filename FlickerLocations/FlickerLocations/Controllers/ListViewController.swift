@@ -43,6 +43,7 @@ class ListViewController: UIViewController {
 
         print("longe: \(longitude) late: \(latitude)")
         let url = getphotoLocationURL(photoId: 50666290098)
+
         
         print("The location URL: \(url)")
         photoFetcher.fetchPhotosLocation(url: url) { (location, error) in
@@ -78,12 +79,15 @@ extension ListViewController: CLLocationManagerDelegate{
 
         print("longe: \(longitude) late: \(latitude)")
         
+        
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
 
-            photoFetcher.fetchFlickerPhotos(url: url) { (array, error) in
+            photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
                 
                 print(array!)
+                self.collectionViewDataSource.latitude = self.latitude
+                self.collectionViewDataSource.longitude = self.longitude
                 self.collectionViewDataSource.photos = array!
                 self.collectionView.reloadSections(IndexSet(integer: 0))
             }

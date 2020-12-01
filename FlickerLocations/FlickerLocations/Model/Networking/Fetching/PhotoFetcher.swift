@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 
 class fetcher{
+    private let imageStore = ImageStore()
+
     
-    
-    func fetchFlickerPhotos(url: URL, completion: @escaping ([PhotoStruct]?, Error?) -> ()){
+    func fetchFlickerPhotos(userLon: Double, userLat: Double, url: URL, completion: @escaping ([PhotoStruct]?, Error?) -> ()){
         //       let dispatchGroup = DispatchGroup()
         URLSession.shared.dataTask(with: url){
             (data, response, error) in
