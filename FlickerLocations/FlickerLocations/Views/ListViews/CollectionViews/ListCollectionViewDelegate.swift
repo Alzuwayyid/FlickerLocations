@@ -22,9 +22,8 @@ class ListCollectionViewDelegate: NSObject, UICollectionViewDelegate {
             let photoIndexPath = IndexPath(item: photoIndex, section: 0)
             // When the request finishes, find the current cell for this photo
             if let cell = collectionView.cellForItem(at: photoIndexPath) as? PhotosListCollectionViewCell {
-            cell.update(displaying: image)
-            
-        }
+                cell.update(displaying: image)
+            }
         }
     }
 }

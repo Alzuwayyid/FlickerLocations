@@ -14,6 +14,7 @@ class ListViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var addressLabel: UILabel!
     
     // MARK: - Data Sources and Delegates
     let mapViewDelegate = ListMapViewDelegate()
@@ -40,7 +41,15 @@ class ListViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
-
+        
+        addressLabel.layer.cornerRadius = 10
+        addressLabel.layer.masksToBounds = true
+        addressLabel.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        mapView.layer.cornerRadius = 15
+        mapView.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
+        mapView.layer.masksToBounds = true
+        
         print("longe: \(longitude) late: \(latitude)")
         let url = getphotoLocationURL(photoId: 50666290098)
 
@@ -53,7 +62,7 @@ class ListViewController: UIViewController {
         }
         
         
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,6 +88,21 @@ extension ListViewController: CLLocationManagerDelegate{
 
         print("longe: \(longitude) late: \(latitude)")
         
+        let geoCoder = CLGeocoder()
+        let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
+        
+        geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
+            placemarks?.forEach { (placemark) in
+
+                if let city = placemark.locality {
+                    DispatchQueue.main.async {
+                        self.addressLabel.text = "  \(city)"
+                        self.addressLabel.reloadInputViews()
+                    }
+                }
+            }
+        }
+        
         
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
@@ -94,6 +118,12 @@ extension ListViewController: CLLocationManagerDelegate{
             }
             viewCounter += 1
         }
+        
+        let region = MKCoordinateRegion(center: locValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+        self.mapView.addAnnotation(annotation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
