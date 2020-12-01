@@ -23,6 +23,7 @@
 		1009C9A1257510BD0022497D /* ListMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */; };
 		1079D8B82576591100794334 /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079D8B72576591100794334 /* PhotoStore.swift */; };
 		1079D8BE2576938B00794334 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079D8BD2576938B00794334 /* Coordinates.swift */; };
+		1079D8C62576B38300794334 /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1079D8C52576B38300794334 /* CollectionViewLayout.swift */; };
 		108D858A2575320E00E04516 /* PhotosListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108D85892575320E00E04516 /* PhotosListCollectionViewCell.swift */; };
 		4398DAA0122477B58214AB6B /* Pods_FlickerLocations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C87FCD78C6F8F0EA7540E7B2 /* Pods_FlickerLocations.framework */; };
 		514728507B80BE95DC6700AE /* Pods_FlickerLocationsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E61DDC5B1977DDCC7F9EDE8 /* Pods_FlickerLocationsTests.framework */; };
@@ -69,6 +70,7 @@
 		1009C9A0257510BD0022497D /* ListMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMapViewDelegate.swift; sourceTree = "<group>"; };
 		1079D8B72576591100794334 /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
 		1079D8BD2576938B00794334 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		1079D8C52576B38300794334 /* CollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
 		108D85892575320E00E04516 /* PhotosListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListCollectionViewCell.swift; sourceTree = "<group>"; };
 		14A9D9EE010436FFED74CA9B /* Pods-FlickerLocationsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerLocationsTests.release.xcconfig"; path = "Target Support Files/Pods-FlickerLocationsTests/Pods-FlickerLocationsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B2DFEECFA882B1CDB2F3D20 /* Pods_FlickerLocations_FlickerLocationsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickerLocations_FlickerLocationsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				1079D8BD2576938B00794334 /* Coordinates.swift */,
+				1079D8C52576B38300794334 /* CollectionViewLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				1009C9A1257510BD0022497D /* ListMapViewDelegate.swift in Sources */,
 				1009C95B2573D7790022497D /* FlickerApi.swift in Sources */,
 				1009C98625740ACA0022497D /* ListViewController.swift in Sources */,
+				1079D8C62576B38300794334 /* CollectionViewLayout.swift in Sources */,
 				1009C9222573CBEB0022497D /* SceneDelegate.swift in Sources */,
 				108D858A2575320E00E04516 /* PhotosListCollectionViewCell.swift in Sources */,
 				1079D8B82576591100794334 /* PhotoStore.swift in Sources */,

@@ -40,7 +40,10 @@ class ListViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
-
+        
+        mapView.layer.cornerRadius = 15
+        mapView.layer.masksToBounds = true
+        
         print("longe: \(longitude) late: \(latitude)")
         let url = getphotoLocationURL(photoId: 50666290098)
 

@@ -56,7 +56,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             }
             
         }
-        
+
         return cell
     }
     
