@@ -23,44 +23,41 @@ class ListViewController: UIViewController {
     // MARK: - Properties
     var photoFetcher = fetcher()
     let locationManager = CLLocationManager()
-
+    var latitude = 0.0
+    var longitude = 0.0
+    var viewCounter = 0.0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = mapViewDelegate
         collectionView.dataSource = collectionViewDataSource
         collectionView.delegate = collectionViewDelegate
-        
         locationManager.delegate = self
         
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
 
+        print("longe: \(longitude) late: \(latitude)")
+        let url = getphotoLocationURL(photoId: 50666290098)
         
-        _ = URLSession.shared.dataTask(with: getFlickerURL(longitude: 46.675297, latitude: 24.713552, radius: 20, totalPagesAmount: 17, photosPerPage: 15)){
-            (data,response,error)
-            in
-            print(data!)
-            print(response!)
-            print(error!)
+        print("The location URL: \(url)")
+        photoFetcher.fetchPhotosLocation(url: url) { (location, error) in
             
+            
+            print("Fetched lon: \(location!.longitude) lat: \(location!.latitude)")
         }
         
         
-        let url = getFlickerURL(longitude: 24.755562, latitude: 46.589584, radius: 20, totalPagesAmount: 20, photosPerPage: 20)
-        print("url:  \(url)")
-        
-        photoFetcher.fetchFlickerPhotos(url: url) { (array, error) in
-            print("arararararr: \(array)")
-            print("error:  \(error)")
-            
-            self.collectionViewDataSource.photos = array!
-            self.collectionView.reloadSections(IndexSet(integer: 0))
-        }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+
     }
     
 
@@ -73,6 +70,25 @@ extension ListViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locationss = \(locValue.latitude) \(locValue.longitude)")
+        
+        DispatchQueue.main.async {
+            self.latitude = locValue.latitude
+            self.longitude = locValue.longitude
+        }
+
+        print("longe: \(longitude) late: \(latitude)")
+        
+        if viewCounter == 0 && longitude != 0.0{
+            let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
+
+            photoFetcher.fetchFlickerPhotos(url: url) { (array, error) in
+                
+                print(array!)
+                self.collectionViewDataSource.photos = array!
+                self.collectionView.reloadSections(IndexSet(integer: 0))
+            }
+            viewCounter += 1
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
