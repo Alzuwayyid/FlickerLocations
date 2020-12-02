@@ -18,7 +18,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet var ownerLabel: UILabel!
     @IBOutlet var descriptionTextView: UITextView!
     
-    // MARK: - Properities
+    // MARK: - Properties
     var imageURL: String = ""
     var titleText: String = ""
     var address: String = ""

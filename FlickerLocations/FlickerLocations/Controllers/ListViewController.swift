@@ -55,9 +55,10 @@ class ListViewController: UIViewController {
 
 
 extension ListViewController{
-   
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
+            // Updating imageView, title, taken date and description in the detailesViewController
             case "showPhotoDetail":
                 if let selectedIndexPath = collectionView.indexPathsForSelectedItems!.first{
                     let photoURL = collectionViewDataSource.photos[selectedIndexPath.row].url_m
@@ -91,6 +92,7 @@ extension ListViewController: CLLocationManagerDelegate{
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locationss = \(locValue.latitude) \(locValue.longitude)")
         
+        // Set the two varibles to the current lon and lat of the user
         DispatchQueue.main.async {
             self.latitude = locValue.latitude
             self.longitude = locValue.longitude
@@ -98,6 +100,7 @@ extension ListViewController: CLLocationManagerDelegate{
 
         print("longe: \(longitude) late: \(latitude)")
         
+        // Update the map and set the label below it to the user city
         let geoCoder = CLGeocoder()
         let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -113,7 +116,7 @@ extension ListViewController: CLLocationManagerDelegate{
             }
         }
         
-        
+        // If the view is loaded for the first time then update the Collection Data Source
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
             photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
@@ -128,6 +131,7 @@ extension ListViewController: CLLocationManagerDelegate{
             viewCounter += 1
         }
         
+        // Add pin to the map for the current location of the user
         let region = MKCoordinateRegion(center: locValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
