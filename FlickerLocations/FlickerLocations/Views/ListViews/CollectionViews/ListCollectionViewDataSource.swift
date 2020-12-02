@@ -37,7 +37,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         photoFetcher.fetchPhotosLocation(url: url!) { (location, error) in
             let distanceBetweenTwoLoc = self.distance(lon: location!.longitude, lat: location!.latitude)
             DispatchQueue.main.async {
-                self.address.append("\(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)")
+                self.address.append("\(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)\(location!.locality.content)")
                 cell.distanceLabel.text = distanceBetweenTwoLoc
                 print("photo id: \(Int(self.photos[indexPath.row].id)!) meters: \(distanceBetweenTwoLoc)")
             }

@@ -15,11 +15,53 @@ struct PhotoStruct: Codable {
     let title: String
     let ispublic, isfriend, isfamily: Int
     let url_m: String
-
+    
+    let datetaken: String
+//    let datetakengranularity, datetakenunknown: Int
+    let photoDescription: Description
+    let ownername: String
+    let views: Views
     
     enum CodingKeys: String, CodingKey {
-        case id, owner, secret, server, farm, title, ispublic, isfriend, isfamily//, height_m, width_m
+        case id, owner, secret, server, farm, title, ispublic, isfriend, isfamily, datetaken,ownername, views // datetakengranularity, datetakenunknown,
         case url_m = "url_m"
+        case photoDescription = "description"
+    }
+}
+
+struct Description: Codable {
+    let content: String
+
+    enum CodingKeys: String, CodingKey {
+        case content = "_content"
+    }
+}
+
+enum Views: Codable {
+    case integer(Int)
+    case string(String)
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(Int.self) {
+            self = .integer(x)
+            return
+        }
+        if let x = try? container.decode(String.self) {
+            self = .string(x)
+            return
+        }
+        throw DecodingError.typeMismatch(Views.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Views"))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .integer(let x):
+            try container.encode(x)
+        case .string(let x):
+            try container.encode(x)
+        }
     }
 }
 

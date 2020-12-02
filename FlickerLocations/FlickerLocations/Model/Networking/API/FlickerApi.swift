@@ -33,7 +33,7 @@ enum EndPoint{
     var urlString: String{
         switch self{
             case .searchURLString(let accuracy, let latitude, let longitude, let radius, let perPage, let pageNum):
-                return EndPoint.flickrPhotosSearch + "&api_key=\(FlickerAPI.apiKey)" + "&accuracy=\(accuracy)" + "&lat=\(latitude)" + "&lon=\(longitude)" + "&radius=\(radius)" + "&per_page=\(perPage)" + "&page=\(pageNum)" + "&format=json&nojsoncallback=1&extras=url_m"
+                return EndPoint.flickrPhotosSearch + "&api_key=\(FlickerAPI.apiKey)" + "&accuracy=\(accuracy)" + "&lat=\(latitude)" + "&lon=\(longitude)" + "&radius=\(radius)" + "&per_page=\(perPage)" + "&page=\(pageNum)" + "&format=json&nojsoncallback=1&extras=url_m,description,date_taken,owner_name,views"
                 
             case .locationURLString(let photoId):
                 return EndPoint.flickrPhotosGeoGetLocation + "&api_key=\(FlickerAPI.apiKey)" + "&photo_id=\(photoId)" + "&format=json&nojsoncallback=1"

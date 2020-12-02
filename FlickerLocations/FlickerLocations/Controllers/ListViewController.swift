@@ -63,11 +63,17 @@ extension ListViewController{
                     let photoURL = collectionViewDataSource.photos[selectedIndexPath.row].url_m
                     let photoTitle = collectionViewDataSource.photos[selectedIndexPath.row].title
                     let address = collectionViewDataSource.address[selectedIndexPath.row]
+                    let takenDate = collectionViewDataSource.photos[selectedIndexPath.row].datetaken
+                    let ownerName = collectionViewDataSource.photos[selectedIndexPath.row].ownername
+                    let photoDescription = collectionViewDataSource.photos[selectedIndexPath.row].photoDescription
                     
                     let decVC = segue.destination as! DetailsViewController
+                    decVC.ownerName = ownerName
+                    decVC.takenDate = takenDate
                     decVC.address = address
                     decVC.imageURL = photoURL
-                    decVC.titleText = photoTitle                    
+                    decVC.titleText = photoTitle
+                    decVC.Photodescription = photoDescription.content
                 }
             default:
                 print("Could not prefrom segue")
@@ -110,7 +116,6 @@ extension ListViewController: CLLocationManagerDelegate{
         
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
-
             photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
                 
                 print(array!)
