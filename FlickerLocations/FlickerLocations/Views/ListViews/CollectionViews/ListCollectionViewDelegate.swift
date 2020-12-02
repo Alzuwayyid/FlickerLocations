@@ -26,4 +26,5 @@ class ListCollectionViewDelegate: NSObject, UICollectionViewDelegate {
             }
         }
     }
+    
 }

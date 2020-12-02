@@ -8,42 +8,8 @@
 import Foundation
 import UIKit
 
-//class PhotoData: Codable{
-//    let title: String
-//    var photoImage: UIImage?
-//    let remoteURL: URL?
-//    let photoId: String
-//    let dateCreated: Date
-//    let latitude: Double
-//    let longitude: Double
-//    let totalPageAmount: Int
-//    let photoPerPage: Int
-//    let radius: Double
-//    let url_m: String
-//    
-//    enum CodingKeys: String, CodingKeys{
-//        case title, radius
-//        case photoId = "id"
-//        case dateCreated = "datetaken"
-//        case remoteURL = "url_z"
-//        case latitude = "lat"
-//        case longitude = "lon"
-//        case url_m = "url_m"
-//
-//    }
-//    
-//    
-//}
-
-
-
-
-
-
-
 // MARK: - Photo
 struct PhotoStruct: Codable {
-//    var photoImage: UIImage?
     let id, owner, secret, server: String
     let farm: Int
     let title: String

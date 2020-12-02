@@ -30,7 +30,7 @@ class PhotosListCollectionViewCell: UICollectionViewCell {
 
         contentView.frame = contentView.frame.inset(by: margins)
         contentView.layer.borderColor = UIColor.white.cgColor
-        contentView.layer.backgroundColor = UIColor.white.cgColor
+        contentView.layer.backgroundColor = UIColor(named: "MapGrayColor")!.cgColor
         contentView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         contentView.layer.shadowOpacity = 0.4
         contentView.layer.shadowColor = UIColor.black.cgColor

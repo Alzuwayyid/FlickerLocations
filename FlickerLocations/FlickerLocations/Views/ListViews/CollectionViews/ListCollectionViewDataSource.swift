@@ -17,7 +17,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     var photoFetcher = fetcher()
     var latitude = 0.0
     var longitude = 0.0
-    
+    var address = [String]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
@@ -29,20 +29,6 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! PhotosListCollectionViewCell
         
         var url = URL(string: photos[indexPath.row].url_m)
-        
-        
-//        AF.request(url!,method: .get).response{
-//            (response) in
-//
-//            switch response.result{
-//
-//                case .success(let photoData):
-//                    cell.photoImageView.image = UIImage(data: photoData!, scale: 1)
-//
-//                case .failure(let error):
-//                    print("Error while fetching image from URL: \(error)")
-//            }
-//        }
 
         
         url = getphotoLocationURL(photoId: Int(photos[indexPath.row].id)!)
@@ -51,12 +37,23 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         photoFetcher.fetchPhotosLocation(url: url!) { (location, error) in
             let distanceBetweenTwoLoc = self.distance(lon: location!.longitude, lat: location!.latitude)
             DispatchQueue.main.async {
+                self.address.append("\(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)")
                 cell.distanceLabel.text = distanceBetweenTwoLoc
                 print("photo id: \(Int(self.photos[indexPath.row].id)!) meters: \(distanceBetweenTwoLoc)")
             }
             
         }
 
+        cell.isUserInteractionEnabled = true
+        
+        let layer = cell.layer
+        let animetion = CABasicAnimation(keyPath: #keyPath(CALayer.borderWidth))
+        animetion.fromValue = NSNumber(50)
+        animetion.toValue = -50
+        animetion.duration = 0.90
+
+        layer.add(animetion, forKey: "disappear")
+        
         return cell
     }
     

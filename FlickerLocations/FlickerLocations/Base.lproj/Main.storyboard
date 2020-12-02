@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,9 +17,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bhv-ie-29W">
-                                <rect key="frame" x="0.0" y="200" width="414" height="613"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewLayout key="collectionViewLayout" id="iN0-ZE-toj" customClass="CollectionViewLayout" customModule="FlickerLocations" customModuleProvider="target"/>
+                                <rect key="frame" x="0.0" y="192" width="414" height="621"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewLayout key="collectionViewLayout" id="gm5-eg-63B" customClass="CollectionViewLayout" customModule="FlickerLocations" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoListCell" id="m0y-11-PoD" customClass="PhotosListCollectionViewCell" customModule="FlickerLocations" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -33,32 +32,41 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-Hd-71Q">
-                                                    <rect key="frame" x="0.0" y="107" width="30" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="26" y="107" width="4" height="0.0"/>
+                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fyd-Qd-Ze7">
+                                                    <rect key="frame" x="3" y="108" width="20" height="1"/>
+                                                    <color key="tintColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="XXO-Hd-71Q" firstAttribute="leading" secondItem="0d1-Hj-GKh" secondAttribute="leading" constant="26" id="7zi-b8-fU6"/>
+                                                <constraint firstItem="fyd-Qd-Ze7" firstAttribute="leading" secondItem="0d1-Hj-GKh" secondAttribute="leading" constant="3" id="KW1-uu-Lb4"/>
                                                 <constraint firstAttribute="trailing" secondItem="9vN-3F-p3m" secondAttribute="trailing" id="LVL-0V-gx5"/>
                                                 <constraint firstItem="XXO-Hd-71Q" firstAttribute="top" secondItem="0d1-Hj-GKh" secondAttribute="top" constant="107" id="Oyz-cz-a0o"/>
                                                 <constraint firstAttribute="bottom" secondItem="9vN-3F-p3m" secondAttribute="bottom" id="QU0-Ex-gsq"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XXO-Hd-71Q" secondAttribute="trailing" constant="20" symbolic="YES" id="VbA-gV-8Sf"/>
+                                                <constraint firstItem="XXO-Hd-71Q" firstAttribute="leading" secondItem="fyd-Qd-Ze7" secondAttribute="trailing" constant="3" id="fEv-IB-18L"/>
+                                                <constraint firstAttribute="bottom" secondItem="fyd-Qd-Ze7" secondAttribute="bottom" id="l6r-cV-8BN"/>
                                                 <constraint firstItem="9vN-3F-p3m" firstAttribute="leading" secondItem="0d1-Hj-GKh" secondAttribute="leading" id="nwu-By-tvR"/>
                                                 <constraint firstItem="9vN-3F-p3m" firstAttribute="top" secondItem="0d1-Hj-GKh" secondAttribute="top" id="pNU-7T-AUD"/>
                                                 <constraint firstAttribute="bottom" secondItem="XXO-Hd-71Q" secondAttribute="bottom" id="txg-Cg-fjk"/>
-                                                <constraint firstItem="XXO-Hd-71Q" firstAttribute="leading" secondItem="0d1-Hj-GKh" secondAttribute="leading" id="x0H-F4-KOX"/>
+                                                <constraint firstItem="fyd-Qd-Ze7" firstAttribute="top" secondItem="0d1-Hj-GKh" secondAttribute="top" constant="108" id="uks-if-Vya"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="distanceLabel" destination="XXO-Hd-71Q" id="6CD-w0-bPT"/>
                                             <outlet property="photoImageView" destination="9vN-3F-p3m" id="zcI-oz-21e"/>
+                                            <segue destination="zcu-dY-1VP" kind="show" identifier="showPhotoDetail" id="BQq-fQ-d31"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YLt-CF-UNL">
-                                <rect key="frame" x="0.0" y="44" width="414" height="128"/>
+                                <rect key="frame" x="0.0" y="-6" width="414" height="178"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTd-Td-CjR">
                                 <rect key="frame" x="0.0" y="171" width="414" height="21"/>
@@ -70,11 +78,11 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YLt-CF-UNL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HhE-b6-SlK"/>
+                            <constraint firstItem="YLt-CF-UNL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-50" id="HhE-b6-SlK"/>
                             <constraint firstAttribute="trailing" secondItem="YLt-CF-UNL" secondAttribute="trailing" id="SWG-Ao-Ofk"/>
-                            <constraint firstItem="Bhv-ie-29W" firstAttribute="top" secondItem="YLt-CF-UNL" secondAttribute="bottom" constant="28" id="aHp-yb-Jln"/>
+                            <constraint firstItem="Bhv-ie-29W" firstAttribute="top" secondItem="YLt-CF-UNL" secondAttribute="bottom" constant="20" id="aHp-yb-Jln"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Bhv-ie-29W" secondAttribute="bottom" id="bnk-yB-9PB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YLt-CF-UNL" secondAttribute="bottom" constant="641" id="ccB-g0-ExC"/>
                             <constraint firstItem="Bhv-ie-29W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gtP-zI-6tS"/>
@@ -82,7 +90,9 @@
                             <constraint firstItem="YLt-CF-UNL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ty2-ym-hgy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" selectedImage="list.bullet.indent" catalog="system" id="heN-aB-4aY"/>
+                    <tabBarItem key="tabBarItem" title="List" landscapeImage="list.bullet.rectangle" catalog="system" selectedImage="list.dash" springLoaded="YES" id="heN-aB-4aY">
+                        <color key="badgeColor" red="0.6588235294" green="0.67843137249999996" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="addressLabel" destination="TTd-Td-CjR" id="wC7-of-zUk"/>
                         <outlet property="collectionView" destination="Bhv-ie-29W" id="GjL-ZZ-nC0"/>
@@ -92,6 +102,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="130.58035714285714"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="lIq-Sm-h0r">
+            <objects>
+                <viewController id="zcu-dY-1VP" customClass="DetailsViewController" customModule="FlickerLocations" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ayi-cs-6LE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vLH-ee-T7w">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="208"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7z-zr-vNq">
+                                <rect key="frame" x="5" y="213" width="404" height="47"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IIg-bg-m20">
+                                <rect key="frame" x="5" y="296" width="41" height="36"/>
+                                <color key="tintColor" red="0.80500143290000004" green="0.18823529410000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovz-sX-3nH">
+                                <rect key="frame" x="54" y="303" width="355" height="20"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iaC-cm-HcF"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="bottom" secondItem="N7z-zr-vNq" secondAttribute="bottom" constant="548" id="3Y7-9v-Yrm"/>
+                            <constraint firstItem="ovz-sX-3nH" firstAttribute="top" secondItem="N7z-zr-vNq" secondAttribute="bottom" constant="43" id="AGc-tM-Q5F"/>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="trailing" secondItem="vLH-ee-T7w" secondAttribute="trailing" id="G8G-lp-sFC"/>
+                            <constraint firstItem="ovz-sX-3nH" firstAttribute="leading" secondItem="ayi-cs-6LE" secondAttribute="leadingMargin" constant="34" id="H8c-aQ-z4B"/>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="bottom" secondItem="ovz-sX-3nH" secondAttribute="bottom" constant="485" id="OYQ-S3-wh4"/>
+                            <constraint firstItem="IIg-bg-m20" firstAttribute="top" secondItem="N7z-zr-vNq" secondAttribute="bottom" constant="35" id="QHK-87-29s"/>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="trailing" secondItem="ovz-sX-3nH" secondAttribute="trailing" constant="5" id="UcL-qW-1Pr"/>
+                            <constraint firstItem="vLH-ee-T7w" firstAttribute="leading" secondItem="iaC-cm-HcF" secondAttribute="leading" id="Vul-q3-Td5"/>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="bottom" secondItem="vLH-ee-T7w" secondAttribute="bottom" constant="600" id="Vxw-lX-1Ch"/>
+                            <constraint firstItem="vLH-ee-T7w" firstAttribute="top" secondItem="iaC-cm-HcF" secondAttribute="top" id="YPo-e1-JG2"/>
+                            <constraint firstItem="IIg-bg-m20" firstAttribute="leading" secondItem="iaC-cm-HcF" secondAttribute="leading" constant="5" id="cPY-4I-gt4"/>
+                            <constraint firstItem="N7z-zr-vNq" firstAttribute="leading" secondItem="iaC-cm-HcF" secondAttribute="leading" constant="5" id="cUw-Wm-gp2"/>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="bottom" secondItem="IIg-bg-m20" secondAttribute="bottom" constant="476" id="gH5-eB-SSg"/>
+                            <constraint firstItem="ovz-sX-3nH" firstAttribute="leading" secondItem="IIg-bg-m20" secondAttribute="trailing" constant="8" symbolic="YES" id="pBU-C7-caF"/>
+                            <constraint firstItem="iaC-cm-HcF" firstAttribute="trailing" secondItem="N7z-zr-vNq" secondAttribute="trailing" constant="5" id="rHB-K3-eG7"/>
+                            <constraint firstItem="N7z-zr-vNq" firstAttribute="top" secondItem="vLH-ee-T7w" secondAttribute="bottom" constant="5" id="ufj-M0-Mr5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qBw-dX-IvW"/>
+                    <connections>
+                        <outlet property="locationLabel" destination="ovz-sX-3nH" id="O5q-gd-XMg"/>
+                        <outlet property="photoImageView" destination="vLH-ee-T7w" id="SHS-7V-b3n"/>
+                        <outlet property="titleLabel" destination="N7z-zr-vNq" id="gmO-kq-zIZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Ho-Ug-k1b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1802.8985507246377" y="138.61607142857142"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3KB-BX-jCv">
@@ -113,9 +183,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="list.bullet.indent" catalog="system" width="128" height="74"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
