@@ -10,6 +10,7 @@ import UIKit
 class PhotosListCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var numOfViewsLabel: UILabel!
     
     func update(displaying image: UIImage?){
         if let imageToDisplay = image {

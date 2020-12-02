@@ -20,7 +20,7 @@ struct PhotoStruct: Codable {
 //    let datetakengranularity, datetakenunknown: Int
     let photoDescription: Description
     let ownername: String
-    let views: Views
+    let views: String
     
     enum CodingKeys: String, CodingKey {
         case id, owner, secret, server, farm, title, ispublic, isfriend, isfamily, datetaken,ownername, views // datetakengranularity, datetakenunknown,
@@ -37,33 +37,6 @@ struct Description: Codable {
     }
 }
 
-enum Views: Codable {
-    case integer(Int)
-    case string(String)
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let x = try? container.decode(Int.self) {
-            self = .integer(x)
-            return
-        }
-        if let x = try? container.decode(String.self) {
-            self = .string(x)
-            return
-        }
-        throw DecodingError.typeMismatch(Views.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Views"))
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .integer(let x):
-            try container.encode(x)
-        case .string(let x):
-            try container.encode(x)
-        }
-    }
-}
 
 /// The response data returned from the flickr API.
 struct PhotoResponse: Codable {

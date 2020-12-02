@@ -44,6 +44,8 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             
         }
 
+        cell.numOfViewsLabel.text = photos[indexPath.row].views
+
         cell.isUserInteractionEnabled = true
         
         let layer = cell.layer
