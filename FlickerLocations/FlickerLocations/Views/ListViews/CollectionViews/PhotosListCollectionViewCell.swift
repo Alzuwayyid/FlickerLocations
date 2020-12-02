@@ -10,6 +10,7 @@ import UIKit
 class PhotosListCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var numOfViewsLabel: UILabel!
     
     func update(displaying image: UIImage?){
         if let imageToDisplay = image {
@@ -30,7 +31,7 @@ class PhotosListCollectionViewCell: UICollectionViewCell {
 
         contentView.frame = contentView.frame.inset(by: margins)
         contentView.layer.borderColor = UIColor.white.cgColor
-        contentView.layer.backgroundColor = UIColor.white.cgColor
+        contentView.layer.backgroundColor = UIColor(named: "MapGrayColor")!.cgColor
         contentView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         contentView.layer.shadowOpacity = 0.4
         contentView.layer.shadowColor = UIColor.black.cgColor

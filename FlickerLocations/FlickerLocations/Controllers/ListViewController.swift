@@ -32,48 +32,58 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // MARK: - Delegating
         mapView.delegate = mapViewDelegate
         collectionView.dataSource = collectionViewDataSource
         collectionView.delegate = collectionViewDelegate
         locationManager.delegate = self
         
         
+        // MARK: - Request and Update Location
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
         
-        addressLabel.layer.cornerRadius = 10
-        addressLabel.layer.masksToBounds = true
-        addressLabel.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        
-        mapView.layer.cornerRadius = 15
-        mapView.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
-        mapView.layer.masksToBounds = true
-        
-        print("longe: \(longitude) late: \(latitude)")
-        let url = getphotoLocationURL(photoId: 50666290098)
-
-        
-        print("The location URL: \(url)")
-        photoFetcher.fetchPhotosLocation(url: url) { (location, error) in
-            
-            
-            print("Fetched lon: \(location!.longitude) lat: \(location!.latitude)")
-        }
-        
-        
+        // Modify views layers
+        modifyViewLayer()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-    
-
 
 
 }
+
+
+extension ListViewController{
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            case "showPhotoDetail":
+                if let selectedIndexPath = collectionView.indexPathsForSelectedItems!.first{
+                    let photoURL = collectionViewDataSource.photos[selectedIndexPath.row].url_m
+                    let photoTitle = collectionViewDataSource.photos[selectedIndexPath.row].title
+                    let address = collectionViewDataSource.address[selectedIndexPath.row]
+                    let takenDate = collectionViewDataSource.photos[selectedIndexPath.row].datetaken
+                    let ownerName = collectionViewDataSource.photos[selectedIndexPath.row].ownername
+                    let photoDescription = collectionViewDataSource.photos[selectedIndexPath.row].photoDescription
+                    
+                    let decVC = segue.destination as! DetailsViewController
+                    decVC.ownerName = ownerName
+                    decVC.takenDate = takenDate
+                    decVC.address = address
+                    decVC.imageURL = photoURL
+                    decVC.titleText = photoTitle
+                    decVC.Photodescription = photoDescription.content
+                }
+            default:
+                print("Could not prefrom segue")
+        }
+    }
+}
+
+
+
+
 
 extension ListViewController: CLLocationManagerDelegate{
         
@@ -106,7 +116,6 @@ extension ListViewController: CLLocationManagerDelegate{
         
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
-
             photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
                 
                 print(array!)
@@ -137,6 +146,14 @@ extension ListViewController: CLLocationManagerDelegate{
     }
     
     
-    
+    func modifyViewLayer(){
+        addressLabel.layer.cornerRadius = 10
+        addressLabel.layer.masksToBounds = true
+        addressLabel.layer.maskedCorners = [ .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        mapView.layer.cornerRadius = 15
+        mapView.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
+        mapView.layer.masksToBounds = true
+    }
     
 }
