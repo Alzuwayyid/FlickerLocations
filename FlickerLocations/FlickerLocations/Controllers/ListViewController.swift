@@ -9,12 +9,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     // MARK: - Outlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var changeLocationButton: UIButton!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Data Sources and Delegates
     let mapViewDelegate = ListMapViewDelegate()
@@ -47,8 +49,8 @@ class ListViewController: UIViewController {
         // Modify views layers
         modifyViewLayer()
         
+        activityIndicator.startAnimating()
     }
-    
 
 
 }
@@ -76,6 +78,13 @@ extension ListViewController{
                     decVC.titleText = photoTitle
                     decVC.Photodescription = photoDescription.content
                 }
+                
+            case "changeLocation":
+                let decVC = segue.destination as! LocationViewController
+                decVC.delegate = self
+                decVC.latitude = self.latitude
+                decVC.longitude = self.longitude
+                
             default:
                 print("Could not prefrom segue")
         }
@@ -116,7 +125,7 @@ extension ListViewController: CLLocationManagerDelegate{
             }
         }
         
-        // If the view is loaded for the first time then update the Collection Data Source
+        // If the view was loaded for the first time update the Data Source
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
             photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
@@ -127,11 +136,12 @@ extension ListViewController: CLLocationManagerDelegate{
                 self.collectionViewDataSource.photos = array!
                 self.collectionViewDelegate.photos = array!
                 self.collectionView.reloadSections(IndexSet(integer: 0))
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
             }
             viewCounter += 1
         }
         
-        // Add pin to the map for the current location of the user
         let region = MKCoordinateRegion(center: locValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
@@ -158,6 +168,23 @@ extension ListViewController: CLLocationManagerDelegate{
         mapView.layer.cornerRadius = 15
         mapView.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
         mapView.layer.masksToBounds = true
+        
+        changeLocationButton.frame = CGRect(x: 355, y: 740, width: 50, height: 50)
+        changeLocationButton.backgroundColor = UIColor(named: "MapGrayColor")
+        changeLocationButton.layer.cornerRadius = 0.5 * changeLocationButton.bounds.size.width
+        
     }
+    
+}
+
+extension ListViewController: passBackLonLat{
+    func passLonLat(lon: Double, lat: Double, country: String) {
+        self.latitude = lat
+        self.longitude = lon
+        self.addressLabel.text = country
+        viewCounter -= 1
+
+    }
+    
     
 }

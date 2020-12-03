@@ -12,7 +12,10 @@ import CoreLocation
 class ListMapViewDelegate: NSObject, MKMapViewDelegate {
     
     var locationManager = CLLocationManager()
+
     
 }
+
+
 
 

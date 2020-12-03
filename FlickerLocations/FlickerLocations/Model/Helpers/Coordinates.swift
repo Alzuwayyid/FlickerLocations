@@ -7,9 +7,11 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 struct Coordinates{
     var longitude: String!
     var latitude: String!
     
 }
+
