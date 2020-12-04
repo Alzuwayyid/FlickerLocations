@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="241" width="414" height="621"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewLayout key="collectionViewLayout" id="wg8-ym-5Nh" customClass="CollectionViewLayout" customModule="FlickerLocations" customModuleProvider="target"/>
-                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="tH1-wd-Uax">
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="c8U-JV-rac">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
@@ -106,7 +106,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="location" catalog="system"/>
                                 <connections>
-                                    <segue destination="96K-Y2-0YO" kind="presentation" modalPresentationStyle="fullScreen" id="Ahi-ia-kdf"/>
+                                    <segue destination="96K-Y2-0YO" kind="presentation" identifier="changeLocation" modalPresentationStyle="fullScreen" id="Ahi-ia-kdf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,7 +131,7 @@
                         <color key="badgeColor" red="0.6588235294" green="0.67843137249999996" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="tH1-wd-Uax" id="DKC-31-68Y"/>
+                        <outlet property="activityIndicator" destination="c8U-JV-rac" id="y78-Z6-n0b"/>
                         <outlet property="addressLabel" destination="TTd-Td-CjR" id="wC7-of-zUk"/>
                         <outlet property="changeLocationButton" destination="XNm-cd-cll" id="GQu-Zw-jfN"/>
                         <outlet property="collectionView" destination="Bhv-ie-29W" id="GjL-ZZ-nC0"/>
@@ -150,11 +150,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="myc-k6-MFt">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EV5-Cy-9fr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="zOh-O9-L7H" appends="YES" id="aLn-4Q-PDo"/>
+                                    <outletCollection property="gestureRecognizers" destination="YVT-eP-jMg" appends="YES" id="Cgf-aG-KrL"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACs-e9-5CH">
@@ -179,29 +179,29 @@
                         <constraints>
                             <constraint firstItem="ACs-e9-5CH" firstAttribute="leading" secondItem="qoy-Uf-iVZ" secondAttribute="trailing" constant="293" id="1NW-co-zic"/>
                             <constraint firstItem="qoy-Uf-iVZ" firstAttribute="leading" secondItem="AVI-aX-qUb" secondAttribute="leading" constant="9" id="1p1-zt-8me"/>
-                            <constraint firstItem="myc-k6-MFt" firstAttribute="leading" secondItem="4hM-v9-GCE" secondAttribute="leading" id="9Pr-xi-En7"/>
+                            <constraint firstAttribute="trailing" secondItem="EV5-Cy-9fr" secondAttribute="trailing" id="44O-Ic-1MI"/>
                             <constraint firstItem="ACs-e9-5CH" firstAttribute="leading" secondItem="AVI-aX-qUb" secondAttribute="leading" constant="364" id="BNl-iG-7yR"/>
+                            <constraint firstItem="EV5-Cy-9fr" firstAttribute="top" secondItem="4hM-v9-GCE" secondAttribute="top" id="SE6-6x-yfd"/>
                             <constraint firstItem="qoy-Uf-iVZ" firstAttribute="top" secondItem="AVI-aX-qUb" secondAttribute="top" constant="721" id="WsR-Sf-bYD"/>
                             <constraint firstItem="ACs-e9-5CH" firstAttribute="top" secondItem="AVI-aX-qUb" secondAttribute="top" constant="721" id="Z7w-3F-OM7"/>
-                            <constraint firstAttribute="bottom" secondItem="myc-k6-MFt" secondAttribute="bottom" id="aM9-oa-8Lb"/>
-                            <constraint firstAttribute="trailing" secondItem="myc-k6-MFt" secondAttribute="trailing" id="aiG-Rz-W9F"/>
-                            <constraint firstItem="myc-k6-MFt" firstAttribute="top" secondItem="4hM-v9-GCE" secondAttribute="top" id="dq7-to-5iu"/>
+                            <constraint firstItem="EV5-Cy-9fr" firstAttribute="leading" secondItem="4hM-v9-GCE" secondAttribute="leading" id="fPJ-qb-ruw"/>
                             <constraint firstItem="AVI-aX-qUb" firstAttribute="trailing" secondItem="ACs-e9-5CH" secondAttribute="trailing" constant="5" id="hn4-cb-zJy"/>
                             <constraint firstItem="AVI-aX-qUb" firstAttribute="bottom" secondItem="ACs-e9-5CH" secondAttribute="bottom" constant="49" id="mxV-eP-a6h"/>
                             <constraint firstItem="AVI-aX-qUb" firstAttribute="bottom" secondItem="qoy-Uf-iVZ" secondAttribute="bottom" constant="49" id="oHB-oh-JSL"/>
+                            <constraint firstAttribute="bottom" secondItem="EV5-Cy-9fr" secondAttribute="bottom" id="xmn-rO-icz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HYX-VP-vWp"/>
                     <connections>
                         <outlet property="chooseAndDismiss" destination="qoy-Uf-iVZ" id="AZb-o9-oPR"/>
                         <outlet property="dismissController" destination="ACs-e9-5CH" id="Beb-ia-ffC"/>
-                        <outlet property="mapView" destination="myc-k6-MFt" id="bPg-JJ-KzY"/>
+                        <outlet property="mapView" destination="EV5-Cy-9fr" id="Maf-Fc-694"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVh-23-ps1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="zOh-O9-L7H">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="YVT-eP-jMg">
                     <connections>
-                        <action selector="longPressOnMap:" destination="96K-Y2-0YO" id="6hK-nY-8Ua"/>
+                        <action selector="longPressOnMap:" destination="96K-Y2-0YO" id="sf2-fb-iaP"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>

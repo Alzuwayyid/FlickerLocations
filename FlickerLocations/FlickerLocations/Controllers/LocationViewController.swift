@@ -15,11 +15,12 @@ protocol passBackLonLat{
 }
 
 class LocationViewController: UIViewController {
-
+    
     // MARK: - Outlets
     @IBOutlet var dismissController: UIButton!
     @IBOutlet var chooseAndDismiss: UIButton!
     @IBOutlet var mapView: MKMapView!
+    
     
     // MARK: - Properties
     var latitude = 0.0
@@ -27,27 +28,29 @@ class LocationViewController: UIViewController {
     var locationName = ""
     var locationCountry = ""
     var delegate: passBackLonLat!
-
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Modify views layers
         modifyViewLayer()
         
-        
         // Set the location to the current one in the mapView
         setLocationToCurrent()
-        
     }
-
+    
+    
+    
     @IBAction func dismissTheView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     @IBAction func longPressOnMap(_ sender: UILongPressGestureRecognizer) {
         let locationCoordinate = mapView.convert(sender.location(in: mapView), toCoordinateFrom: mapView)
         saveGeoCoordination(from: locationCoordinate)
     }
+    
     
     func saveGeoCoordination(from coordinate: CLLocationCoordinate2D) {
         let geoPos = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -61,24 +64,25 @@ class LocationViewController: UIViewController {
         }
     }
     
+    
     func copyLocation(_ annotation: MKPointAnnotation) {
         longitude = annotation.coordinate.longitude
         latitude = annotation.coordinate.latitude
         locationName = annotation.title!
         locationCountry = annotation.subtitle!
         let CLLCoordType = CLLocationCoordinate2D(latitude: latitude,
-                                                              longitude: longitude)
+                                                  longitude: longitude)
         let annotationPin = MKPointAnnotation()
         annotationPin.coordinate = CLLCoordType
         self.mapView.addAnnotation(annotationPin)
         print("Name: \(locationName) country: \(locationCountry) long: \(longitude) lat: \(latitude)")
-        
     }
+    
+    
     @IBAction func checkMarkAndDismiss(_ sender: UIButton) {
         delegate.passLonLat(lon: longitude, lat: latitude, country: locationName)
         self.dismiss(animated: true, completion: nil)
     }
-    
     
     
     func modifyViewLayer(){
@@ -87,12 +91,15 @@ class LocationViewController: UIViewController {
         dismissController.layer.cornerRadius = 0.5 * dismissController.bounds.size.width
     }
     
+    
     func setLocationToCurrent(){
-        let locValue = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let locValue = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
         let region = MKCoordinateRegion(center: locValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
         self.mapView.addAnnotation(annotation)
     }
+    
+    
 }

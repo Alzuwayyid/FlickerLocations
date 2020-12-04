@@ -49,8 +49,10 @@ class ListViewController: UIViewController, UIViewControllerTransitioningDelegat
         // Modify views layers
         modifyViewLayer()
         
+        activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
+
 
 
 }
@@ -183,6 +185,10 @@ extension ListViewController: passBackLonLat{
         self.longitude = lon
         self.addressLabel.text = country
         viewCounter -= 1
+        DispatchQueue.main.async { [self] in
+            self.activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+        }
 
     }
     

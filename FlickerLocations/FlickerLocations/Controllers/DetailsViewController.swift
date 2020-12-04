@@ -26,6 +26,7 @@ class DetailsViewController: UIViewController {
     var ownerName: String = ""
     var Photodescription: String = ""
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
