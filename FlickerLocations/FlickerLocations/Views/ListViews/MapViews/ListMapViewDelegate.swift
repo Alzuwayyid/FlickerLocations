@@ -22,10 +22,6 @@ class ListMapViewDelegate: NSObject, MKMapViewDelegate {
     func setRegionToCurrent(lon: Double, lat: Double)->MKCoordinateRegion{
         let locValue = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         let region = MKCoordinateRegion(center: locValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        self.mapView.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-        self.mapView.addAnnotation(annotation)
         
         return region
     }

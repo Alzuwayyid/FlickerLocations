@@ -158,7 +158,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACs-e9-5CH">
-                                <rect key="frame" x="364" y="765" width="45" height="48"/>
+                                <rect key="frame" x="364" y="765" width="40" height="48"/>
                                 <color key="tintColor" red="0.98431372549999996" green="0.2421244474" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="closeX"/>
                                 <connections>
@@ -166,7 +166,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoy-Uf-iVZ">
-                                <rect key="frame" x="9" y="765" width="62" height="48"/>
+                                <rect key="frame" x="5" y="765" width="66" height="48"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <state key="normal" image="checkmark"/>
                                 <connections>
@@ -178,14 +178,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ACs-e9-5CH" firstAttribute="leading" secondItem="qoy-Uf-iVZ" secondAttribute="trailing" constant="293" id="1NW-co-zic"/>
-                            <constraint firstItem="qoy-Uf-iVZ" firstAttribute="leading" secondItem="AVI-aX-qUb" secondAttribute="leading" constant="9" id="1p1-zt-8me"/>
+                            <constraint firstItem="qoy-Uf-iVZ" firstAttribute="leading" secondItem="AVI-aX-qUb" secondAttribute="leading" constant="5" id="1p1-zt-8me"/>
                             <constraint firstAttribute="trailing" secondItem="EV5-Cy-9fr" secondAttribute="trailing" id="44O-Ic-1MI"/>
                             <constraint firstItem="ACs-e9-5CH" firstAttribute="leading" secondItem="AVI-aX-qUb" secondAttribute="leading" constant="364" id="BNl-iG-7yR"/>
                             <constraint firstItem="EV5-Cy-9fr" firstAttribute="top" secondItem="4hM-v9-GCE" secondAttribute="top" id="SE6-6x-yfd"/>
                             <constraint firstItem="qoy-Uf-iVZ" firstAttribute="top" secondItem="AVI-aX-qUb" secondAttribute="top" constant="721" id="WsR-Sf-bYD"/>
                             <constraint firstItem="ACs-e9-5CH" firstAttribute="top" secondItem="AVI-aX-qUb" secondAttribute="top" constant="721" id="Z7w-3F-OM7"/>
                             <constraint firstItem="EV5-Cy-9fr" firstAttribute="leading" secondItem="4hM-v9-GCE" secondAttribute="leading" id="fPJ-qb-ruw"/>
-                            <constraint firstItem="AVI-aX-qUb" firstAttribute="trailing" secondItem="ACs-e9-5CH" secondAttribute="trailing" constant="5" id="hn4-cb-zJy"/>
+                            <constraint firstItem="AVI-aX-qUb" firstAttribute="trailing" secondItem="ACs-e9-5CH" secondAttribute="trailing" constant="10" id="hn4-cb-zJy"/>
                             <constraint firstItem="AVI-aX-qUb" firstAttribute="bottom" secondItem="ACs-e9-5CH" secondAttribute="bottom" constant="49" id="mxV-eP-a6h"/>
                             <constraint firstItem="AVI-aX-qUb" firstAttribute="bottom" secondItem="qoy-Uf-iVZ" secondAttribute="bottom" constant="49" id="oHB-oh-JSL"/>
                             <constraint firstAttribute="bottom" secondItem="EV5-Cy-9fr" secondAttribute="bottom" id="xmn-rO-icz"/>

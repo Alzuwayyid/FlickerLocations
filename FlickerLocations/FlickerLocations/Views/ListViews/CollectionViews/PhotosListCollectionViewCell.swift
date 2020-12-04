@@ -14,11 +14,9 @@ class PhotosListCollectionViewCell: UICollectionViewCell {
     
     func update(displaying image: UIImage?){
         if let imageToDisplay = image {
-//            spinner.stopAnimating()
             photoImageView.image = imageToDisplay
         }
         else{
-//            spinner.startAnimating()
             photoImageView.image = nil
         }
     }

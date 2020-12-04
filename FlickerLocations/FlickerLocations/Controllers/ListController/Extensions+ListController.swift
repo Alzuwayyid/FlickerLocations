@@ -16,11 +16,11 @@ extension ListViewController: CLLocationManagerDelegate{
         print("locationss = \(locValue.latitude) \(locValue.longitude)")
         
         // Set the two locValue varibles to the current lon and lat of the user
-        DispatchQueue.main.async {
-            self.latitude = locValue.latitude
-            self.longitude = locValue.longitude
-        }
-        
+            DispatchQueue.main.async {
+                self.latitude = locValue.latitude
+                self.longitude = locValue.longitude
+            }
+
         print("longe: \(longitude) late: \(latitude)")
         
         // Update the map and set the label below it to the user city
@@ -34,14 +34,14 @@ extension ListViewController: CLLocationManagerDelegate{
                     
                     if let city = placemark.locality {
                         DispatchQueue.main.async { [self] in
-                            self.addressLabel.text = "  \(city)"
-                            self.addressLabel.reloadInputViews()
+                                self.addressLabel.text = "  \(city)"
+                                self.addressLabel.reloadInputViews()
                         }
                     }
                 }
             }
         }
-        
+
         
         // If the view was loaded for the first time, update the Data Source
         if viewCounter == 0 && longitude != 0.0{
@@ -68,7 +68,7 @@ extension ListViewController: CLLocationManagerDelegate{
             self.mapView.addAnnotation(annotation)
             viewCounter += 1
         }
-        
+
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -127,6 +127,8 @@ extension ListViewController: passBackLonLat{
         self.longitude = lon
         self.addressLabel.text = country
         viewCounter -= 1
+        collectionViewDataSource.removeAllAddresses()
+        
         DispatchQueue.main.async { [self] in
             self.activityIndicator.isHidden = false
             activityIndicator.startAnimating()
