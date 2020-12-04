@@ -56,7 +56,7 @@ class LocationViewController: UIViewController {
        saveGeoCoordination(from: locationCoordinate)
     }
     
-    
+    // Submit current location to geocoding server to fetch the address
     func saveGeoCoordination(from coordinate: CLLocationCoordinate2D) {
         let geoPos = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         let annotation = MKPointAnnotation()
@@ -69,7 +69,7 @@ class LocationViewController: UIViewController {
         }
     }
     
-    
+    // Update labels and add pin to the map
     func copyLocation(_ annotation: MKPointAnnotation) {
         longitude = annotation.coordinate.longitude
         latitude = annotation.coordinate.latitude
@@ -82,7 +82,7 @@ class LocationViewController: UIViewController {
         self.mapView.addAnnotation(annotationPin)
     }
     
-    
+    // Dismiss the ViewController and pass lon,lat and address.
     @IBAction func checkMarkAndDismiss(_ sender: UIButton) {
         delegate.passLonLat(lon: longitude, lat: latitude, country: locationName)
         self.dismiss(animated: true, completion: nil)

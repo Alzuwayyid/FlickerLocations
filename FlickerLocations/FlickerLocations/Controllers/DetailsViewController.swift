@@ -30,12 +30,14 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Update labels based on the passed variables from ListViewControllers
         titleLabel.text = titleText
         locationLabel.text = address
         dateLabel.text = takenDate
         ownerLabel.text = ownerName
         descriptionTextView.text = Photodescription
         
+        // Fetch photo based on passed URL
         AF.request(URL(string: imageURL)!,method: .get).response{ [self]
             (response) in
             

@@ -30,10 +30,11 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         var url = URL(string: photos[indexPath.row].url_m)
 
-        
+        // Build URL based on photoID.
         url = getphotoLocationURL(photoId: Int(photos[indexPath.row].id)!)
         
         
+        // Fetch photo location.
         photoFetcher.fetchPhotosLocation(url: url!) { (location, error) in
             let distanceBetweenTwoLoc = self.distance(lon: location!.longitude, lat: location!.latitude)
             DispatchQueue.main.async {
@@ -44,10 +45,12 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             
         }
 
+        // Display number of views
         cell.numOfViewsLabel.text = photos[indexPath.row].views
 
         cell.isUserInteractionEnabled = true
         
+        // Animation with borderWidth
         let layer = cell.layer
         let animetion = CABasicAnimation(keyPath: #keyPath(CALayer.borderWidth))
         animetion.fromValue = NSNumber(50)
