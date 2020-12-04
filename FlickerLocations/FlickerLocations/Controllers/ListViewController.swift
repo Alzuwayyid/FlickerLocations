@@ -9,12 +9,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     // MARK: - Outlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var changeLocationButton: UIButton!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - Data Sources and Delegates
     let mapViewDelegate = ListMapViewDelegate()
@@ -47,17 +49,20 @@ class ListViewController: UIViewController {
         // Modify views layers
         modifyViewLayer()
         
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
     }
-    
+
 
 
 }
 
 
 extension ListViewController{
-   
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
+            // Updating imageView, title, taken date and description in the detailesViewController
             case "showPhotoDetail":
                 if let selectedIndexPath = collectionView.indexPathsForSelectedItems!.first{
                     let photoURL = collectionViewDataSource.photos[selectedIndexPath.row].url_m
@@ -75,6 +80,13 @@ extension ListViewController{
                     decVC.titleText = photoTitle
                     decVC.Photodescription = photoDescription.content
                 }
+                
+            case "changeLocation":
+                let decVC = segue.destination as! LocationViewController
+                decVC.delegate = self
+                decVC.latitude = self.latitude
+                decVC.longitude = self.longitude
+                
             default:
                 print("Could not prefrom segue")
         }
@@ -91,6 +103,7 @@ extension ListViewController: CLLocationManagerDelegate{
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locationss = \(locValue.latitude) \(locValue.longitude)")
         
+        // Set the two varibles to the current lon and lat of the user
         DispatchQueue.main.async {
             self.latitude = locValue.latitude
             self.longitude = locValue.longitude
@@ -98,6 +111,7 @@ extension ListViewController: CLLocationManagerDelegate{
 
         print("longe: \(longitude) late: \(latitude)")
         
+        // Update the map and set the label below it to the user city
         let geoCoder = CLGeocoder()
         let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -113,7 +127,7 @@ extension ListViewController: CLLocationManagerDelegate{
             }
         }
         
-        
+        // If the view was loaded for the first time update the Data Source
         if viewCounter == 0 && longitude != 0.0{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
             photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
@@ -124,6 +138,8 @@ extension ListViewController: CLLocationManagerDelegate{
                 self.collectionViewDataSource.photos = array!
                 self.collectionViewDelegate.photos = array!
                 self.collectionView.reloadSections(IndexSet(integer: 0))
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
             }
             viewCounter += 1
         }
@@ -154,6 +170,27 @@ extension ListViewController: CLLocationManagerDelegate{
         mapView.layer.cornerRadius = 15
         mapView.layer.maskedCorners = [ .layerMinXMinYCorner, .layerMaxXMinYCorner]
         mapView.layer.masksToBounds = true
+        
+        changeLocationButton.frame = CGRect(x: 355, y: 740, width: 50, height: 50)
+        changeLocationButton.backgroundColor = UIColor(named: "MapGrayColor")
+        changeLocationButton.layer.cornerRadius = 0.5 * changeLocationButton.bounds.size.width
+        
     }
+    
+}
+
+extension ListViewController: passBackLonLat{
+    func passLonLat(lon: Double, lat: Double, country: String) {
+        self.latitude = lat
+        self.longitude = lon
+        self.addressLabel.text = country
+        viewCounter -= 1
+        DispatchQueue.main.async { [self] in
+            self.activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+        }
+
+    }
+    
     
 }
