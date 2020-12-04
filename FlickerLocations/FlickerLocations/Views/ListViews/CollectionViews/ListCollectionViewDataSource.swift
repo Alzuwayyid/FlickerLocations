@@ -40,7 +40,6 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             DispatchQueue.main.async {
                 self.address.append("\(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)\(location!.locality.content)")
                 cell.distanceLabel.text = distanceBetweenTwoLoc
-                print("photo id: \(Int(self.photos[indexPath.row].id)!) meters: \(distanceBetweenTwoLoc)")
             }
             
         }
@@ -77,6 +76,10 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         //       Alaa Location: 51.30384644267682
         distance = Double(distanceInMeters)!
         return "\(String(format: "%.3f", distance)) Meter"
+    }
+    
+    func removeAllAddresses(){
+        self.address.removeAll()
     }
     
     

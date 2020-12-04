@@ -30,7 +30,7 @@ class ListViewController: UIViewController, UIViewControllerTransitioningDelegat
     var latitude = 0.0
     var longitude = 0.0
     var viewCounter = 0.0
-    
+    var locationChangedByUser = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
