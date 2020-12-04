@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 class ListViewController: UIViewController, UIViewControllerTransitioningDelegate {
-
+    
     // MARK: - Outlets
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var collectionView: UICollectionView!
@@ -40,7 +40,7 @@ class ListViewController: UIViewController, UIViewControllerTransitioningDelegat
         collectionView.dataSource = collectionViewDataSource
         collectionView.delegate = collectionViewDelegate
         locationManager.delegate = self
-        
+
         
         // MARK: - Request and Update Location
         locationManager.requestWhenInUseAuthorization()
@@ -54,9 +54,9 @@ class ListViewController: UIViewController, UIViewControllerTransitioningDelegat
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
-
-
-
+    
+    
+    
 }
 
 

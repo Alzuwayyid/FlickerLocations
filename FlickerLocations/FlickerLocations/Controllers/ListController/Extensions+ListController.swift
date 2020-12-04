@@ -28,17 +28,20 @@ extension ListViewController: CLLocationManagerDelegate{
         let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         // Submit current location to geocoding server and update label with the result
-        geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
-            placemarks?.forEach { (placemark) in
-                
-                if let city = placemark.locality {
-                    DispatchQueue.main.async {
-                        self.addressLabel.text = "  \(city)"
-                        self.addressLabel.reloadInputViews()
+        if viewCounter == 0{
+            geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
+                placemarks?.forEach { (placemark) in
+                    
+                    if let city = placemark.locality {
+                        DispatchQueue.main.async { [self] in
+                            self.addressLabel.text = "  \(city)"
+                            self.addressLabel.reloadInputViews()
+                        }
                     }
                 }
             }
         }
+        
         
         // If the view was loaded for the first time, update the Data Source
         if viewCounter == 0 && longitude != 0.0{
@@ -54,16 +57,18 @@ extension ListViewController: CLLocationManagerDelegate{
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
             }
+            
+            // Update the map to display current location in the map
+            let center = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.mapView.setRegion(region, animated: true)
+            // Add pin to the current location
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+            self.mapView.addAnnotation(annotation)
             viewCounter += 1
         }
         
-        // Update the map to display current location in the map
-        let region = MKCoordinateRegion(center: locValue, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        self.mapView.setRegion(region, animated: true)
-        // Add pin to the current location
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-        self.mapView.addAnnotation(annotation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
