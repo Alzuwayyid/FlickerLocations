@@ -10,6 +10,8 @@ import Foundation
 
 struct Constants{
     var proccessURLTest = URL(string: "https://live.staticflickr.com/65535/50628317031_cb0d87610f.jpg")
+    
+
 }
 
 

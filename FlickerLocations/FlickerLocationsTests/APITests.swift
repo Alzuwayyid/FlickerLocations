@@ -42,10 +42,33 @@ class FlickerApiTest: XCTestCase{
                            OperationQueue.main,
                            "Completion handler should run on the main thread; it did not.")
             completionExpectation.fulfill()
-
         }
         waitForExpectations(timeout: 1.0, handler: nil)
 
+    }
+    
+    
+    func testPhotosHTTPResponse() {
+        let url = getFlickerURL(accuracy:16, longitude: 46.712912, latitude: 24.853905, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
+
+      let promise = expectation(description: "Status code: 200")
+
+      let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
+
+        if let error = error {
+          XCTFail("Error: \(error.localizedDescription)")
+          return
+        } else if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+          if statusCode == 200 {
+
+            promise.fulfill()
+          } else {
+            XCTFail("Status code: \(statusCode)")
+          }
+        }
+      }
+      dataTask.resume()
+      wait(for: [promise], timeout: 5)
     }
     
 }
