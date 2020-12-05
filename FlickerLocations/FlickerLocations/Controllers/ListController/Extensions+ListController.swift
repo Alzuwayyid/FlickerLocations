@@ -93,7 +93,6 @@ extension ListViewController{
                 if let selectedIndexPath = collectionView.indexPathsForSelectedItems!.first{
                     let photoURL = collectionViewDataSource.photos[selectedIndexPath.row].url_m
                     let photoTitle = collectionViewDataSource.photos[selectedIndexPath.row].title
-                    let address = collectionViewDataSource.address[selectedIndexPath.row]
                     let takenDate = collectionViewDataSource.photos[selectedIndexPath.row].datetaken
                     let ownerName = collectionViewDataSource.photos[selectedIndexPath.row].ownername
                     let photoDescription = collectionViewDataSource.photos[selectedIndexPath.row].photoDescription
@@ -101,7 +100,7 @@ extension ListViewController{
                     let decVC = segue.destination as! DetailsViewController
                     decVC.ownerName = ownerName
                     decVC.takenDate = takenDate
-                    decVC.address = address
+                    decVC.address = addressLabel.text!
                     decVC.imageURL = photoURL
                     decVC.titleText = photoTitle
                     decVC.Photodescription = photoDescription.content
@@ -113,6 +112,7 @@ extension ListViewController{
                 decVC.delegate = self
                 decVC.latitude = self.latitude
                 decVC.longitude = self.longitude
+
                 
             default:
                 print("Could not prefrom segue")
@@ -123,12 +123,13 @@ extension ListViewController{
 // Update the collectionView and address label based on the new chosen location
 extension ListViewController: passBackLonLat{
     func passLonLat(lon: Double, lat: Double, country: String) {
+//        collectionViewDataSource.removeAllAddresses()
+        
         self.latitude = lat
         self.longitude = lon
         self.addressLabel.text = country
         viewCounter -= 1
-        collectionViewDataSource.removeAllAddresses()
-        
+
         DispatchQueue.main.async { [self] in
             self.activityIndicator.isHidden = false
             activityIndicator.startAnimating()

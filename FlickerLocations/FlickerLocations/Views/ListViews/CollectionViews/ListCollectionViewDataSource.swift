@@ -39,7 +39,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
             let distanceBetweenTwoLoc = self.distance(lon: location!.longitude, lat: location!.latitude)
             DispatchQueue.main.async {
                 self.address.append("\(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)\(location!.locality.content)")
-                cell.distanceLabel.text = distanceBetweenTwoLoc
+                cell.distanceLabel.text = "\(distanceBetweenTwoLoc) - \(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)\(location!.locality.content)"
             }
             
         }
@@ -58,6 +58,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         layer.add(animetion, forKey: "disappear")
         
+        print("photo count form the cell: \(photos.count)")
         return cell
     }
     
