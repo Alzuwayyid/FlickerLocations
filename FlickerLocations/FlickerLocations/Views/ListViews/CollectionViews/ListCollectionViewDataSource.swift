@@ -58,7 +58,6 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         layer.add(animetion, forKey: "disappear")
         
-        print("photo count form the cell: \(photos.count)")
         return cell
     }
     

@@ -13,7 +13,6 @@ extension ListViewController: CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locationss = \(locValue.latitude) \(locValue.longitude)")
         
         // Set the two locValue varibles to the current lon and lat of the user
             DispatchQueue.main.async {
@@ -21,7 +20,6 @@ extension ListViewController: CLLocationManagerDelegate{
                 self.longitude = locValue.longitude
             }
 
-        print("longe: \(longitude) late: \(latitude)")
         
         // Update the map and set the label below it to the user city
         let geoCoder = CLGeocoder()
@@ -48,7 +46,6 @@ extension ListViewController: CLLocationManagerDelegate{
             let url = getFlickerURL(accuracy:16, longitude: latitude, latitude: longitude, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
             photoFetcher.fetchFlickerPhotos(userLon: longitude, userLat: latitude, url: url) { (array, error) in
                 
-                print(array!)
                 self.collectionViewDataSource.latitude = self.latitude
                 self.collectionViewDataSource.longitude = self.longitude
                 self.collectionViewDataSource.photos = array!
