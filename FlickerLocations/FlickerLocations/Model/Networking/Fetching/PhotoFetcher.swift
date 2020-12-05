@@ -95,7 +95,7 @@ class fetcher{
         }.resume()
     }
     
-    private func processImageRequest(data: Data?, error: Error?)->Result<UIImage, Error> {
+     func processImageRequest(data: Data?, error: Error?)->Result<UIImage, Error> {
         guard let imageData = data, let image = UIImage(data: imageData) else{
             // Could not create the image
             if data == nil {
@@ -108,7 +108,7 @@ class fetcher{
         return .success(image)
     }
     
-    private let session: URLSession = {
+     let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
     }()

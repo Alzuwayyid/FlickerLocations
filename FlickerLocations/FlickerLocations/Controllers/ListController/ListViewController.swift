@@ -50,9 +50,15 @@ class ListViewController: UIViewController, UIViewControllerTransitioningDelegat
         // Modify views layers
         styleViews.modifyViewLayer(button: &addressLabel, button2: &changeLocationButton, mapView: &mapView)
         
-        
+        mapView.isScrollEnabled = false
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        
     }
     
     
