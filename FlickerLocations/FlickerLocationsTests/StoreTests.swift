@@ -13,16 +13,16 @@ import XCTest
 class FlickerStoreTest: XCTestCase{
     var imageStore = ImageStore()
     
-    
+    // Test if imageURL() method do load a URL of an image from the disk
     func testfetchImageURLFromDisk(){
         let fetchImageURL = imageStore.imageURL(forKey: "50666290098")
         XCTAssertNotNil(fetchImageURL)
     }
     
+    // Test if image() does return an image form the disk
     func testFetchingImageFromTheDisk(){
         let fetchImage = imageStore.image(forKey: "50666290098")
         XCTAssertNotNil(fetchImage)
     }
 }
 
-//"file:///Users/mohammed/Library/Developer/CoreSimulator/Devices/6CA0065C-E220-488F-BADE-8E8526B179BA/data/Containers/Data/Application/BCBAB2CC-A83D-47F5-93C9-A7DD62B4562A/Documents/50666290098"

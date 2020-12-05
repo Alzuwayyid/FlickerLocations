@@ -32,6 +32,7 @@ class FlickerApiTest: XCTestCase{
         XCTAssertEqual(OperationQueue.current, OperationQueue.main)
     }
     
+    // fetchPhotosLocation returns lon and lat based on photo ID
     func testLocationOfImage(){
         
         let completionExpectation = expectation(description: "Execute completion closure.")
@@ -47,7 +48,7 @@ class FlickerApiTest: XCTestCase{
 
     }
     
-    
+
     func testPhotosHTTPResponse() {
         let url = getFlickerURL(accuracy:16, longitude: 46.712912, latitude: 24.853905, radius: 9, totalPagesAmount: 100, photosPerPage: 100)
 
