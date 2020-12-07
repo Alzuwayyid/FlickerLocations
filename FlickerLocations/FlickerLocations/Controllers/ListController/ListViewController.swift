@@ -53,16 +53,7 @@ class ListViewController: UIViewController, UIViewControllerTransitioningDelegat
         mapView.isScrollEnabled = false
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        
-    }
-    
-    
-    
+    }    
 }
 
 

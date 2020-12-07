@@ -17,7 +17,6 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     var photoFetcher = fetcher()
     var latitude = 0.0
     var longitude = 0.0
-    var address = [String]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
@@ -38,7 +37,6 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         photoFetcher.fetchPhotosLocation(url: url!) { (location, error) in
             let distanceBetweenTwoLoc = self.distance(lon: location!.longitude, lat: location!.latitude)
             DispatchQueue.main.async {
-                self.address.append("\(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)\(location!.locality.content)")
                 cell.distanceLabel.text = "\(distanceBetweenTwoLoc) - \(location!.country.content), \(location!.region.content), \(location!.neighbourhood.content)\(location!.locality.content)"
             }
             
@@ -46,7 +44,6 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
 
         // Display number of views
         cell.numOfViewsLabel.text = photos[indexPath.row].views
-
         cell.isUserInteractionEnabled = true
         
         // Animation with borderWidth
@@ -61,7 +58,7 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         return cell
     }
     
-    // If the distance is less than a Kilo, pass the meters
+    // If the distance is less than a Kilometer, pass the meters
     func distance(lon: String, lat: String)->String{
         let currentLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
         let photoLocation = CLLocation(latitude: Double(lat)!, longitude: Double(lon)!)

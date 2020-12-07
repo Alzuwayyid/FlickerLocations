@@ -11,6 +11,15 @@ import MapKit
 
 
 protocol passBackLonLat{
+
+    /**
+    This protocol allow passing latitude, longitude and country name from one controller into another
+
+    - parameter lon: to pass the latitude.
+    - parameter lat: to pass the longitude.
+    - parameter country: to pass country name.
+
+    */
     func passLonLat(lon: Double, lat: Double, country: String)
 }
 
@@ -79,7 +88,9 @@ class LocationViewController: UIViewController {
                                                   longitude: longitude)
         let annotationPin = MKPointAnnotation()
         annotationPin.coordinate = CLLCoordType
-        self.mapView.addAnnotation(annotationPin)
+        DispatchQueue.main.async {
+            self.mapView.addAnnotation(annotationPin)
+        }
     }
     
     // Dismiss the ViewController and pass lon,lat and address.
