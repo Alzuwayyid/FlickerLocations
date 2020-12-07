@@ -15,13 +15,12 @@ extension ListViewController: CLLocationManagerDelegate{
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         
         // Set the two locValue varibles to the current lon and lat of the user
-            DispatchQueue.main.async {
-                self.latitude = locValue.latitude
-                self.longitude = locValue.longitude
-            }
-
+        DispatchQueue.main.async {
+            self.latitude = locValue.latitude
+            self.longitude = locValue.longitude
+        }
         
-        // Update the map and set the label below it to the user city
+        
         let geoCoder = CLGeocoder()
         let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
         
@@ -29,17 +28,17 @@ extension ListViewController: CLLocationManagerDelegate{
         if viewCounter == 0{
             geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
                 placemarks?.forEach { (placemark) in
-                    
+                    // Set the label below it to the user city
                     if let city = placemark.locality {
                         DispatchQueue.main.async { [self] in
-                                self.addressLabel.text = "  \(city)"
-                                self.addressLabel.reloadInputViews()
+                            self.addressLabel.text = "  \(city)"
+                            self.addressLabel.reloadInputViews()
                         }
                     }
                 }
             }
         }
-
+        
         
         // If the view was loaded for the first time, update the Data Source
         if viewCounter == 0 && longitude != 0.0{
@@ -65,7 +64,7 @@ extension ListViewController: CLLocationManagerDelegate{
             self.mapView.addAnnotation(annotation)
             viewCounter += 1
         }
-
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -94,22 +93,22 @@ extension ListViewController{
                     let ownerName = collectionViewDataSource.photos[selectedIndexPath.row].ownername
                     let photoDescription = collectionViewDataSource.photos[selectedIndexPath.row].photoDescription
                     
-                    let decVC = segue.destination as! DetailsViewController
-                    decVC.ownerName = ownerName
-                    decVC.takenDate = takenDate
-                    decVC.address = addressLabel.text!
-                    decVC.imageURL = photoURL
-                    decVC.titleText = photoTitle
-                    decVC.Photodescription = photoDescription.content
+                    let desVC = segue.destination as! DetailsViewController
+                    desVC.ownerName = ownerName
+                    desVC.takenDate = takenDate
+                    desVC.address = addressLabel.text!
+                    desVC.imageURL = photoURL
+                    desVC.titleText = photoTitle
+                    desVC.Photodescription = photoDescription.content
                 }
             // Set the longitude and latitude in the locationController to be the user's location
             case "changeLocation":
-                let decVC = segue.destination as! LocationViewController
-                // set this controller to be delegate in order to update the collectionView with the new location
-                decVC.delegate = self
-                decVC.latitude = self.latitude
-                decVC.longitude = self.longitude
-
+                let desVC = segue.destination as! LocationViewController
+                // set the ListController to be delegate in order to update the collectionView and mapView with the new location
+                desVC.delegate = self
+                desVC.latitude = self.latitude
+                desVC.longitude = self.longitude
+                
                 
             default:
                 print("Could not prefrom segue")
@@ -120,13 +119,11 @@ extension ListViewController{
 // Update the collectionView and address label based on the new chosen location
 extension ListViewController: passBackLonLat{
     func passLonLat(lon: Double, lat: Double, country: String) {
-//        collectionViewDataSource.removeAllAddresses()
-        
         self.latitude = lat
         self.longitude = lon
         self.addressLabel.text = country
         viewCounter -= 1
-
+        
         DispatchQueue.main.async { [self] in
             self.activityIndicator.isHidden = false
             activityIndicator.startAnimating()

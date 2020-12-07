@@ -18,11 +18,9 @@ enum EndPoint{
     
     //This method requires authentication with 'write' permission.
     static let batchCorrectLocation = "flickr.photos.geo.batchCorrectLocation"
-    //This method does not require authentication.
-    static let getLocation = "flickr.photos.geo.getLocation"
     //This method requires authentication with 'read' permission.
     static let flickrPhotosSearch = "https://www.flickr.com/services/rest/?method=flickr.photos.search"
-    
+    //This method does not require authentication.
     static let flickrPhotosGeoGetLocation = "https://www.flickr.com/services/rest/?method=flickr.photos.geo.getLocation"
     
     static let radius: Double = 20.0
