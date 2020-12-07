@@ -35,7 +35,7 @@ class DetailsViewController: UIViewController {
         locationLabel.text = address
         dateLabel.text = takenDate
         ownerLabel.text = ownerName
-        descriptionTextView.text = Photodescription
+        descriptionTextView.text = Photodescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         
         // Fetch photo based on passed URL
         AF.request(URL(string: imageURL)!,method: .get).response{ [self]
