@@ -74,10 +74,4 @@ class ListCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         distance = Double(distanceInMeters)!
         return "\(String(format: "%.3f", distance)) Meter"
     }
-    
-    func removeAllAddresses(){
-        self.address.removeAll()
-    }
-    
-    
 }
